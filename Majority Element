@@ -1,0 +1,36 @@
+link:https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3321/
+
+
+
+class Solution {
+    public int majorityElement(int[] arr ) {
+        
+        // This is a hashMap solution
+         HashMap<Integer,Integer> map = new HashMap<Integer, Integer>(); 
+  
+         for(int i = 0; i < arr.length; i++) { 
+             if (map.containsKey(arr[i])) { 
+                     int count = map.get(arr[i]) +1; 
+                     if (count > arr.length /2) { 
+                         return arr[i]; 
+                    } else
+                        map.put(arr[i], count); 
+  
+             } 
+            else
+                 map.put(arr[i],1); 
+             } 
+         return arr[0];   
+     } 
+       // Below is an efficient sol.
+        
+  public int majorityElement(int[] arr) {
+  
+  
+    Arrays.sort(arr);
+        return arr[arr.length/2];
+        
+      
+    }
+
+
