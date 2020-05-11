@@ -1,0 +1,23 @@
+https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3323/
+
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        
+        int x0 = coordinates[0][0], y0 = coordinates[0][1], 
+            x1 = coordinates[1][0], y1 = coordinates[1][1];
+        int dx = x1 - x0, dy = y1 - y0;
+        for (int[] co : coordinates) {
+            int x = co[0], y = co[1];
+            if (dx * (y - y1) != dy * (x - x1))
+                return false;
+        }
+        return true;    
+    }
+    
+    
+    public float slope(int[] p1, int [] p2) {
+        if((p1[0]-p2[0])== 0) return 0;
+        float sl = (p2[0]-p1[0])/(p2[1]-p1[1]);
+        return sl;
+    }
+}
