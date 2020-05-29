@@ -1,0 +1,41 @@
+//Good question FANG
+
+// Concepts involved here include bipartite graph
+// Then we construct bipartitr graph as per the matching from two sets formed as per array(given) travesal
+// Then TO find even edge bipartite graph and odd edge bipartite graph --> this is done using (2 colors only)coloring concept that is in graph we take a node and then color its adjacent nodes with opposite color we proceed and then in case we come across any node whose coloring is contrdictory already done then its odd length other wise its even
+// we have to look for even edge graph
+
+class Solution {
+    List<List<Integer>> grph = new ArrayList<>();
+        Map<Integer, Integer> color = new HashMap<>();
+        
+    public boolean possibleBipartition(int N, int[][] dislikes) {
+       
+        
+     for (int i = 1; i <= N + 1; ++i) grph.add(new ArrayList());
+
+        for (int[] edge : dislikes) {
+            grph.get(edge[0]).add(edge[1]);
+            grph.get(edge[1]).add(edge[0]);
+        }
+
+        for (int node = 1; node <= N; ++node) {
+            if (!color.containsKey(node) && !dfs(node, 0)) return false;
+        }
+            
+        return true;
+    }
+
+    private boolean dfs(int node, int color) {
+        if (this.color.containsKey(node)) return this.color.get(node) == color;
+        
+        this.color.put(node, color);
+
+        for (int neighbor : grph.get(node)) {
+            if (!dfs(neighbor, color ^ 1)) return false;
+        }
+            
+        return true;
+}
+                              
+}
