@@ -1,0 +1,14 @@
+
+
+// Good question, check all possiblity of intersections by drawing and then logically implement
+
+
+public int[][] intervalIntersection(int[][] A, int[][] B) {
+         List<int[]> intersections = new ArrayList<>();
+        for (int a = 0, b = 0; a < A.length && b < B.length;) {
+            int lo = Math.max(A[a][0], B[b][0]), hi = Math.min(A[a][1], B[b][1]);
+            if (lo <= hi) intersections.add(new int[]{lo, hi});
+            int discarded = A[a][1] < B[b][1] ? a++ : b++;
+        } 
+        return intersections.toArray(new int[intersections.size()][2]);
+    }
