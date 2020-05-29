@@ -1,0 +1,29 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+ // Premium question, used recurion:: preorder -> root->left->right
+ 
+ 
+class Solution {
+    int i = 0;
+    // used a bound value to update check what value to go left and what to go right using bound value.. So to construct BST
+    public TreeNode bstFromPreOrder(int[] preorder, int bound) {
+        if(i == preorder.length || preorder[i] > bound) return null;
+         TreeNode root = new TreeNode(preorder[i++]);
+        root.left = bstFromPreOrder(preorder, root.val);
+        root.right = bstFromPreOrder(preorder, bound);
+        
+        return root;
+    }
+    public TreeNode bstFromPreorder(int[] preorder) {
+        
+      return bstFromPreOrder(preorder, Integer.MAX_VALUE);
+    }
+}
