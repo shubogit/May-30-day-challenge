@@ -1,0 +1,18 @@
+class Solution {
+    public int findMaxLength(int[] nums) {
+        int ans = 0;
+        int sum = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0,-1); // it works as we need answer as max length, its stored as key: sum   value: index of Array(                         basically length)
+        for(int i = 0; i < nums.length; i++) {
+            
+            sum = sum+ (nums[i] == 1?1 : -1);  // updating sum at the same time replaceing nums[] = '0' with '-1'
+            if(map.containsKey(sum)){           // always storing larger length???
+                ans = Math.max(ans, i-map.get(sum)); // tough logic to think on observation by writting examples
+            }else {
+                map.put(sum, i);
+            }
+        }
+        return ans;
+    }
+}
