@@ -1,0 +1,19 @@
+class Solution {
+    // Intutive problem ..can use heap, Priority Queue, Multimap ..
+    
+    public int[][] kClosest(int[][] points, int K) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparing(a -> -a[0]*a[0] -a[1]*a[1]));
+        
+   //     int ans[][] = new ans[K][2];
+//         while(K-- > 0) {
+//             ans[K] = pq.poll();
+            
+//         }
+        for (int[] p : points) { 
+            pq.offer(p); 
+            if (pq.size() > K) { pq.poll(); } // poll out the farthest among the K + 1 points.
+      
+    }
+         return pq.toArray(new int[K][2]);
+}
+}
